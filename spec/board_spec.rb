@@ -8,16 +8,32 @@ RSpec.describe Board do
       expect { Board.new(0) }.to raise_error ArgumentError
     end
     
-    it 'is created with all cells blank' do
-      expect(Board.new.cells.all? { |cell| cell.color == :blank }).to be true
+    it 'is created with all tokens empty' do
+      expect(Board.new.tokens.all? { |token| token.nil? }).to be true
     end
   end
   
-  describe '#cells' do
-    it 'returns all 42 cells' do
-      expect(Board.new.cells.length).to eq 42
+  describe '#tokens' do
+    it 'returns all 42 tokens' do
+      expect(Board.new.tokens.length).to eq 42
     end
   end
-
+  
+  describe '#print' do
+    context 'with empty board' do
+      it 'correctly prints an empty board' do
+        empty_board = <<END_STRING
+|1|2|3|4|5|6|7|
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+END_STRING
+        expect(Board.new.to_s).to eq empty_board
+      end
+    end
+  end
   
 end
