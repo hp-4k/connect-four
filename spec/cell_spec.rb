@@ -21,4 +21,28 @@ RSpec.describe Cell do
     expect(cell.color).to be :blue
   end
   
+  describe "#to_s" do
+    context "when blank" do
+      it "is printed as ' '" do
+        expect(Cell.new.to_s).to eq ' '
+      end
+    end
+    
+    context "when blue" do
+      it "is printed as 'B'" do
+        cell = Cell.new
+        cell.color = :blue
+        expect(cell.to_s).to eq 'B'
+      end
+    end
+    
+    context "when yellow" do
+      it "is printed as 'Y'" do
+        cell = Cell.new
+        cell.color = :yellow
+        expect(cell.to_s).to eq 'Y'
+      end
+    end
+  end
+  
 end
