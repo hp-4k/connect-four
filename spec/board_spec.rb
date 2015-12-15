@@ -2,20 +2,22 @@ require 'spec_helper'
 
 RSpec.describe Board do
   
+  let(:board) { Board.new }
+  
   describe '#new' do
     it 'does not take any argumnets' do
-      expect(Board.new).to be_an_instance_of Board
+      expect(board).to be_an_instance_of Board
       expect { Board.new(0) }.to raise_error ArgumentError
     end
     
-    it 'is created with all tokens empty' do
-      expect(Board.new.tokens.all? { |token| token.nil? }).to be true
+    it 'is created with no tokens' do
+      expect(board.tokens.all? { |token| token.nil? }).to be true
     end
   end
   
   describe '#tokens' do
     it 'returns all 42 tokens' do
-      expect(Board.new.tokens.length).to eq 42
+      expect(board.tokens.length).to eq 42
     end
   end
   
@@ -31,7 +33,7 @@ RSpec.describe Board do
 | | | | | | | |
 | | | | | | | |
 END_STRING
-        expect(Board.new.to_s).to eq empty_board
+        expect(board.to_s).to eq empty_board
       end
     end
   end

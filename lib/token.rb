@@ -1,4 +1,4 @@
-class Cell
+class Token
   
   attr_accessor :color
   
