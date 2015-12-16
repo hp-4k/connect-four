@@ -2,8 +2,8 @@ class Token
   
   attr_accessor :color
   
-  def initialize
-    @color = :blank
+  def initialize(color)
+    @color = color
   end
   
   def to_s
