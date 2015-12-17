@@ -34,4 +34,23 @@ RSpec.describe Token do
     end
   end
   
+  describe "#==" do
+    context "when two tokens have the same colour" do
+      it "returns true" do
+        token1 = Token.new(:blue)
+        token2 = Token.new(:blue)
+        expect(token1 == token2).to be true
+      end
+    end
+    
+    context "when two tokens have different colour" do
+      it "returns false" do
+        token1 = Token.new(:blue)
+        token2 = Token.new(:yellow)
+        expect(token1 == token2).to be false
+      end
+    end
+  
+  end
+  
 end

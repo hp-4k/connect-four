@@ -14,4 +14,8 @@ class Token
     end
   end
   
+  def ==(other)
+    color == other.color
+  end
+  
 end
