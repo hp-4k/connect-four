@@ -88,4 +88,39 @@ END_STRING
     end
     
   end
+  
+  describe "#winner" do
+    it "returns the winning token when game is over #1" do
+      4.times { board.insert_token(1, 'B') }
+      expect(board.winner).to eq 'B'
+    end
+    
+    it "returns the winning token when game is over #2" do
+      1.upto(4) { |n| board.insert_token(n, 'B') }
+      expect(board.winner).to eq 'B'
+    end
+    
+    it "returns the winning token when game is over #3" do
+      board.insert_token(1, 'B')
+      2.upto(4) { |n| board.insert_token(n, 'Y') }
+      board.insert_token(2, 'B')
+      3.upto(4) { |n| board.insert_token(n, 'Y') }
+      board.insert_token(3, 'B')
+      board.insert_token(4, 'Y')
+      board.insert_token(4, 'B')
+      expect(board.winner).to eq 'B'
+    end
+    
+    it "returns nil when there is no winner" do
+      [1, 3, 5, 7].each { |n| board.insert_token(n, 'B') }
+      [2, 4, 6].each { |n| board.insert_token(n, 'Y') }
+      [1, 3, 5, 7].each { |n| board.insert_token(n, 'Y') }
+      [2, 4, 6].each { |n| board.insert_token(n, 'B') }
+      expect(board.winner).to eq nil
+    end
+    
+    it "returns nil when board is empty" do
+      expect(board.winner).to eq nil
+    end
+  end
 end
