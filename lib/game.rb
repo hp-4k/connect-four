@@ -6,29 +6,37 @@ class Game
   def initialize(board)
     @board = board
     @token_colours = [:blue, :yellow]
-    @current_colour = :blue
+    @current_colour = :yellow
   end
   
   def start
-    until @board.winner
+    loop do
      begin
-       puts "#{@current_colour.to_s.capitalize} player's turn."
+       puts "\n#{current_player_color} player's turn."
        puts @board
        print "Choose a column to place your token in (1-7): "
-       choice = gets.chomp.to_i
+       choice = STDIN.gets.chomp.to_i
        @board.insert_token(choice, Token.new(@current_colour))
-       swap_player
+       break if @board.winner
       rescue ArgumentError
-       puts "Invalid column, try again."
+       puts "\n-- Invalid column, try again. --"
        retry
+      else
+        swap_player
       end
     end
+    puts @board
+    puts "#{current_player_color} player won!"
   end
   
   private
   
     def swap_player
       @current_colour = @token_colours.select { |c| c != @current_colour }.first
+    end
+    
+    def current_player_color
+      @current_colour.to_s.capitalize 
     end
     
 end
