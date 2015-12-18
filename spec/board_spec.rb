@@ -119,6 +119,11 @@ END_STRING
       expect(board.winner).to eq nil
     end
     
+    it "returns nil with 3 same tokens in a row" do
+      3.times { board.insert_token(1, "B") }
+      expect(board.winner).to be nil
+    end
+    
     it "returns nil when board is empty" do
       expect(board.winner).to eq nil
     end

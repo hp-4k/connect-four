@@ -85,6 +85,7 @@ class Board
     
     def check_if_line_wins(row1, column1, row2, column2)
       token = get_token(row1, column1)
+      return false if get_token(row2, column2) != token
       
       row = row1
       column = column1
